@@ -5,6 +5,7 @@
     },
     "extends": [
         "plugin:@typescript-eslint/recommended",
+        "prettier/@typescript-eslint",
         "airbnb-base"
     ],
     "globals": {
