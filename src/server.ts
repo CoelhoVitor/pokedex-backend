@@ -1,3 +1,3 @@
-const a = 8;
+import App from './app';
 
-console.log(a);
+App.listen(3333);
