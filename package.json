@@ -4,9 +4,23 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/server.ts",
+    "build": "sucrase ./src -d ./dist --transforms typescript, imports"
   },
   "keywords": [],
   "author": "Vitor Coelho da Silva <vitorvcs@hotmail.com> (https://www.linkedin.com/in/vitor-coelho-silva/)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "sequelize": "^5.21.3",
+    "yup": "^0.28.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2",
+    "sequelize-cli": "^5.5.1",
+    "sucrase": "^3.11.0",
+    "typescript": "^3.7.4"
+  }
 }
