@@ -4,14 +4,13 @@ import {
   Model,
   CreatedAt,
   UpdatedAt,
-  HasMany,
+  BeforeSave,
 } from 'sequelize-typescript';
+import Sequelize from 'sequelize';
 import * as bcrypt from 'bcryptjs';
 
-// import Pokemon from './Pokemon';
-
+/*
 @Table({
-  timestamps: true,
   hooks: {
     beforeSave: async (trainer: Trainer): Promise<void> => {
       if (trainer.password) {
@@ -20,28 +19,42 @@ import * as bcrypt from 'bcryptjs';
     },
   },
 })
+*/
 export default class Trainer extends Model<Trainer> {
-  // @HasMany(() => Pokemon)
-  // pokemons: Pokemon[];
+  // @Column
+  // name!: string;
+
+  // @Column
+  // email!: string;
+
+  // password!: string;
 
   @Column
-  name: string;
+  password_hash!: string;
 
-  @Column
-  email: string;
+  // @CreatedAt
+  // @Column
+  // createdAt!: Date;
 
-  password: string;
+  // @UpdatedAt
+  // @Column
+  // updatedAt!: Date;
 
-  @Column
-  password_hash: string;
+  static init(sequelize: any) {
+    super.init(
+      {
+        name: Sequelize.STRING,
+        email: Sequelize.STRING,
+        password: Sequelize.VIRTUAL,
+        password_hash: Sequelize.STRING,
+      },
+      {
+        sequelize,
+      }
+    );
 
-  @CreatedAt
-  @Column
-  createdAt!: Date;
-
-  @UpdatedAt
-  @Column
-  updatedAt!: Date;
+    return this;
+  }
 
   checkPassword(password: string): Promise<boolean> {
     return bcrypt.compare(password, this.password_hash);

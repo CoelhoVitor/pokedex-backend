@@ -3,6 +3,9 @@ import cors from 'cors';
 
 import routes from './routes';
 
+// import 'reflect-metadata';
+import './database';
+
 class App {
   public express: express.Application;
 
