@@ -26,7 +26,9 @@
     "camelcase": "off",
     "no-unused-vars": ["error", { "argsIgnorePattern": "next" }],
     "arrow-parens": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "comma-dangle": "off",
+    "implicit-arrow-linebreak": "off"
   },
   "settings": {
     "import/resolver": {

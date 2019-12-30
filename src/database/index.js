@@ -1,10 +1,11 @@
 import Sequelize from 'sequelize';
 
-import Trainer from '../app/models/Trainer.ts';
-
 import databaseConfig from '../config/database';
 
-const models = [Trainer];
+import Trainer from '../app/models/Trainer';
+import Pokemon from '../app/models/Pokemon';
+
+const models = [Trainer, Pokemon];
 
 class Database {
   constructor() {
@@ -13,7 +14,9 @@ class Database {
 
   init() {
     this.connection = new Sequelize(databaseConfig);
-    models.map(model => model.init(this.connection));
+    models
+      .map(model => model.init(this.connection))
+      .map(model => model.associate && model.associate(this.connection.models));
   }
 }
 
