@@ -1,5 +1,6 @@
 import { Column, Model } from 'sequelize-typescript';
 import Sequelize from 'sequelize';
+import bcrypt from 'bcryptjs';
 
 /*
 @Table({
@@ -46,5 +47,9 @@ export default class Trainer extends Model<Trainer> {
     );
 
     return this;
+  }
+
+  checkPassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password_hash);
   }
 }
