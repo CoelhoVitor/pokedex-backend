@@ -14,6 +14,22 @@ class PokemonController {
 
     return res.json(pokemon);
   }
+
+  public async update(req: Request, res: Response): Promise<Response> {
+    const pokemon = await Pokemon.findByPk(req.params.id);
+
+    const pokemonUpdated = await pokemon.update(req.body);
+
+    return res.json(pokemonUpdated);
+  }
+
+  public async delete(req: Request, res: Response): Promise<Response> {
+    const pokemon = await Pokemon.findByPk(req.params.id);
+
+    await pokemon.destroy();
+
+    return res.send();
+  }
 }
 
 export default new PokemonController();
