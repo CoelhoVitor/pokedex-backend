@@ -20,7 +20,7 @@ class PokemonController {
     });
 
     if (!(await schema.isValid(req.body))) {
-      return res.status(400).json({ error: 'Validation fails' });
+      return res.status(400).json({ error: 'Falha na validação' });
     }
 
     const pokemon = await Pokemon.create(req.body);

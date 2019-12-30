@@ -28,7 +28,8 @@
     "arrow-parens": "off",
     "import/extensions": "off",
     "comma-dangle": "off",
-    "implicit-arrow-linebreak": "off"
+    "implicit-arrow-linebreak": "off",
+    "object-curly-newline": "off"
   },
   "settings": {
     "import/resolver": {

@@ -1,13 +1,5 @@
-import {
-  Table,
-  Column,
-  Model,
-  CreatedAt,
-  UpdatedAt,
-  BeforeSave,
-} from 'sequelize-typescript';
+import { Column, Model } from 'sequelize-typescript';
 import Sequelize from 'sequelize';
-import * as bcrypt from 'bcryptjs';
 
 /*
 @Table({
@@ -21,11 +13,11 @@ import * as bcrypt from 'bcryptjs';
 })
 */
 export default class Trainer extends Model<Trainer> {
-  // @Column
-  // name!: string;
+  @Column
+  name!: string;
 
-  // @Column
-  // email!: string;
+  @Column
+  email!: string;
 
   // password!: string;
 
@@ -54,9 +46,5 @@ export default class Trainer extends Model<Trainer> {
     );
 
     return this;
-  }
-
-  checkPassword(password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password_hash);
   }
 }
