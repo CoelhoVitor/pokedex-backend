@@ -12,6 +12,7 @@ class PokemonController {
 
   public async store(req: Request, res: Response): Promise<Response> {
     const schema = Yup.object().shape({
+      trainer_id: Yup.number().required(),
       name: Yup.string().required(),
       type1: Yup.string().required(),
       type2: Yup.string(),
@@ -21,6 +22,16 @@ class PokemonController {
 
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Falha na validação' });
+    }
+
+    const { trainer_id } = req.body;
+
+    const trainerIsUser: boolean = (req as any).trainerId === trainer_id;
+
+    if (!trainerIsUser) {
+      return res.status(401).json({
+        error: 'Você só pode adicionar pokémons para si mesmo',
+      });
     }
 
     const pokemon = await Pokemon.create(req.body);
